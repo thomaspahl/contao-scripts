@@ -2,7 +2,7 @@
 #######################################################################
 #   Contao: remove superfluous languages
 # USAGE
-#   1. Edit the lines defining the languages and countires you want to
+#   1. Edit the lines defining the languages and countries you want to
 #      keep
 #   2. Run this script in the root folder of the Contao installation
 #   3. Rebuild the Contao internal cache (BE "System maintenance")
@@ -17,8 +17,8 @@
 #   in any extension, as the language cache will only be built for
 #   languages present in core (see Automator.php).
 #
-#	En detail, the script does the following:
-#	- in system/modules/core/languages/ all language subfolders
+#   En detail, the script does the following:
+#   - in system/modules/core/languages/ all language subfolders
 #     which are not in the list of desired languages are moved to a new
 #     folder system/modules/core/languages.off/
 #     By this, they are out of sight for rebuildung the internal cache and
