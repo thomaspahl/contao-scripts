@@ -1,8 +1,13 @@
 #!/bin/bash
 #######################################################################
 #   Contao: remove superfluous languages
+# USAGE
+#   1. Edit the lines defining the languages and countires you want to
+#      keep
+#   2. Run this script in the root folder of the Contao installation
+#   3. Rebuild the Contao internal cache (BE "System maintenance")
 # DESCRIPTION
-#   This script reduces the languages and countires both in drop-down
+#   This script reduces the languages and countries both in drop-down
 #   lists and in the system cache (for languages) to a defined list
 #   of desired languages/countries.
 #   Shorter drop-down lists showing only the relevant choices improve the
@@ -12,10 +17,29 @@
 #   in any extension, as the language cache will only be built for
 #   languages present in core (see Automator.php).
 #
+#	En detail, the script does the following:
+#	- in system/modules/core/languages/ all language subfolders
+#     which are not in the list of desired languages are moved to a new
+#     folder system/modules/core/languages.off/
+#     By this, they are out of sight for rebuildung the internal cache and
+#     for some other places in Contao handling languages.
+#   - in system/config/countries.php and system/config/languages.php all
+#     countries/languages are deactived (by converting the line to a
+#     comment) so that they are no longer displayed in the respective
+#     option lists (drop-downs).
+#
+#   Alternatively to editing the languages= and countries= lines below
+#   you may also add the following lines to localconfig.php (outside of
+#   the part marked INSTALL SCRIPT):
+#   $keep_languages = 'de en da fr nl';
+#   $keep_countries = 'de gb dk fr nl us';
+#   (choose your sets).
+#   Such a specification in localconfig.php takes precedence.
+#
 # NOTES
 #   After running this script, Contao check will be unhappy.
 #   After updating Contao, run this script again.
-#   No data is deleted permanently, wiht a little manual work everything
+#   No data is deleted permanently, with a little manual work everything
 #   can be restored.
 #
 # BUGS
@@ -58,7 +82,7 @@ fi
 #
 eval $( sed -n -e '
 /^\$keep_/ {
-	s!^\$!!
+	s!^[[:space:]]*\$!!
 	s!,! !g
 	s![[:space:]]*=[[:space:]]*!=!
 	s!;.*!!
