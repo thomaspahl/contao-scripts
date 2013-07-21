@@ -34,7 +34,8 @@
 #   $keep_languages = 'de en da fr nl';
 #   $keep_countries = 'de gb dk fr nl us';
 #   (choose your sets).
-#   Such a specification in localconfig.php takes precedence.
+#   If the script detects these lines in localconfig.php, it will use
+#   them instead of the lines below.
 #
 # NOTES
 #   After running this script, Contao check will be unhappy.
@@ -51,10 +52,13 @@
 #######################################################################
 
 #
+# Edit here to adapt to your needs:
 # define the languages and countries you want to keep here
 #
 languages="de en da fr nl"
 countries="de gb dk fr nl us"
+
+### no user-editable parts below this line ############################
 
 #
 # file configuration - for Contao 3.x
